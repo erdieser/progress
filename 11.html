@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Etkileşimli Öğrenci CV Formu</title>
+<style>
+body{font-family:Arial; margin:30px;}
+fieldset{margin-bottom:20px; padding:15px;}
+label{display:block; margin-top:10px;}
+meter, progress{width:300px; height:20px;}
+button{margin-top:15px; padding:8px 15px;}
+</style>
+</head>
+<body>
+
+<h2>Öğrenci CV Formu</h2>
+
+<form>
+
+<fieldset>
+<legend>Kişisel Bilgiler</legend>
+
+<label>Ad Soyad</label>
+<input type="text">
+
+<label>Doğum Tarihi</label>
+<input type="date">
+
+<label>Şehir</label>
+<select>
+<option>İstanbul</option>
+<option>Ankara</option>
+<option>İzmir</option>
+<option>Bursa</option>
+</select>
+
+</fieldset>
+
+<fieldset>
+<legend>Programlama Bilgileri</legend>
+
+<label>Programlama Dili</label>
+<select>
+<option>HTML</option>
+<option>CSS</option>
+<option>JavaScript</option>
+<option>Python</option>
+</select>
+
+<label>Bilgi Seviyesi (Slider)</label>
+<input type="range" id="seviye" min="0" max="100" value="50"
+oninput="guncelle()">
+
+<p>Seviye:</p>
+<meter id="meter" min="0" max="100" value="50" low="40" high="90"></meter>
+
+<p>Kurs İlerlemesi:</p>
+<progress id="progress" value="50" max="100"></progress>
+
+</fieldset>
+
+<fieldset>
+<legend>Hakkınızda</legend>
+<textarea rows="4" cols="40"></textarea>
+</fieldset>
+
+<button type="submit">Gönder</button>
+<button type="reset">Temizle</button>
+
+</form>
+
+<script>
+function guncelle(){
+  var deger = document.getElementById("seviye").value;
+  document.getElementById("meter").value = deger;
+  document.getElementById("progress").value = deger;
+}
+</script>
+
+</body>
+</html>

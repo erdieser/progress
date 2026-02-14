@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Öğrenci CV Formu</title>
+<style>
+body{font-family:Arial; margin:30px;}
+fieldset{margin-bottom:20px; padding:15px;}
+label{display:block; margin-top:10px;}
+meter, progress{width:300px; height:20px;}
+button{margin-top:15px; padding:8px 15px;}
+</style>
+</head>
+<body>
+
+<h2>Öğrenci CV Formu</h2>
+
+<form>
+
+<fieldset>
+<legend>Kişisel Bilgiler</legend>
+
+<label>Ad Soyad</label>
+<input type="text" name="ad">
+
+<label>Doğum Tarihi</label>
+<input type="date" name="dogum">
+
+<label>Şehir</label>
+<select name="sehir">
+<option>İstanbul</option>
+<option>Ankara</option>
+<option>İzmir</option>
+<option>Bursa</option>
+</select>
+
+</fieldset>
+
+<fieldset>
+<legend>Programlama Bilgileri</legend>
+
+<label>Bildiğiniz Programlama Dili</label>
+<select>
+<option>HTML</option>
+<option>CSS</option>
+<option>JavaScript</option>
+<option>Python</option>
+<option>Java</option>
+</select>
+
+<label>Bilgi Seviyesi (Meter)</label>
+<meter min="0" max="100" value="60" low="40" high="90"></meter>
+
+<label>Öğrenme İlerlemesi (Progress)</label>
+<progress value="30" max="100"></progress>
+
+</fieldset>
+
+<fieldset>
+<legend>Hakkınızda</legend>
+
+<label>Kendinizi Tanıtınız</label>
+<textarea rows="4" cols="40"></textarea>
+</fieldset>
+
+<button type="submit">Gönder</button>
+<button type="reset">Temizle</button>
+
+</form>
+
+</body>
+</html>

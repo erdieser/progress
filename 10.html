@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Meter ve Progress Örneği</title>
+<style>
+  body{font-family:Arial; margin:30px;}
+  .kutu{margin-bottom:20px;}
+  meter, progress{width:300px; height:20px;}
+</style>
+</head>
+<body>
+
+<h2>Programlama Dersi Takibi</h2>
+
+<div class="kutu">
+  <label>HTML Seviye Puanı (meter)</label><br>
+  <meter min="0" max="100" low="40" high="90" value="70"></meter>
+  <span>70 / 100</span>
+</div>
+
+<div class="kutu">
+  <label>HTML Kurs Tamamlama (progress)</label><br>
+  <progress max="100" value="45"></progress>
+  <span>%45 tamamlandı</span>
+</div>
+
+<div class="kutu">
+  <label>CSS Seviye Puanı (meter)</label><br>
+  <meter min="0" max="100" low="40" high="90" value="55"></meter>
+  <span>55 / 100</span>
+</div>
+
+<div class="kutu">
+  <label>CSS Kurs Tamamlama (progress)</label><br>
+  <progress max="100" value="30"></progress>
+  <span>%30 tamamlandı</span>
+</div>
+
+</body>
+</html>

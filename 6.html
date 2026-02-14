@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Forma Devam</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <form action="kayitol.html">
+        <fieldset>
+            <Legend>Yorum Gönder</Legend>
+            <label>e-Posta</label>
+            <input type="text" tabindex="1">
+            <label>Yorum:</label>
+            <textarea rows="3" cols="20" tabindex="2"></textarea><br><br>
+
+            <input type="submit" value="Gönder" id="">
+            <input type="reset" value="Temizle" id="">
+            
+        </fieldset>
+        <fieldset>
+            <legend>Liste HTML Örnekleri</legend>
+            <label>Açılır Liste Görünümü</label>
+            <select name="iller" size="1">
+                <option value="54">Sakarya</option>
+                <option value="35">İzmir</option>
+                <option value="34">İstanbul</option>
+            </select>
+            <br><br>
+            <label> Sabit Liste Görünümü</label>
+            <select name="aylar" multiple size="3" >
+                <option value="1">Ocak</option>
+                <option value="2">Şubat</option>
+                <option value="3">Mart</option>
+                <option value="4">Nisan</option>
+                <option value="5">Mayıs</option>
+                <option value="6">Haziran</option>
+                
+            </select>
+            <br>
+            <br>
+            <label>"optgroup ile gruplanmış liste görünümü"</label>
+            <select name="arabalar" multiple>
+                <option selected value="none">Hiçbiri</option>
+                <optgroup label="Opel">
+                    <option value="Corsa">Corsa</option>
+                    <option value="Astra">Astra</option>
+                    <option value="Gronland">Gronland</option>
+                </optgroup>
+                <optgroup label="Volkswagen">
+                    <option value="Polo" selected>Polo</option>
+                    <option value="Golf">Golf</option>
+                    <option value="T-Roc">T-Roc</option>
+                </optgroup>
+
+            </select>
+
+        </fieldset>
+    </form>
+    
+</body>
+</html>

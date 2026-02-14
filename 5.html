@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>CV Formu</title>
+<style>
+body{font-family:Arial;margin:30px}
+form{max-width:520px;padding:20px;border:1px solid #ccc;border-radius:10px}
+label{display:block;margin-top:10px;font-weight:bold}
+input,select,textarea{width:100%;padding:8px;margin-top:5px}
+.lang{display:flex;gap:10px;margin-top:8px}
+button{margin-top:15px;padding:10px 15px}
+</style>
+</head>
+<body>
+
+<h2>CV Formu</h2>
+
+<form id="cvForm">
+
+<label>Ad Soyad</label>
+<input type="text" id="ad">
+
+<label>E-posta</label>
+<input type="email" id="mail">
+
+<label>Programlama Dilleri</label>
+
+<div class="lang">
+HTML
+<select class="skill">
+<option value="1">Başlangıç</option>
+<option value="2">Orta</option>
+<option value="3">İleri</option>
+</select>
+</div>
+
+<div class="lang">
+CSS
+<select class="skill">
+<option value="1">Başlangıç</option>
+<option value="2">Orta</option>
+<option value="3">İleri</option>
+</select>
+</div>
+
+<div class="lang">
+JavaScript
+<select class="skill">
+<option value="1">Başlangıç</option>
+<option value="2">Orta</option>
+<option value="3">İleri</option>
+</select>
+</div>
+
+<br>
+
+<b>Form Doluluk Oranı</b><br>
+<progress id="prog" value="0" max="100"></progress>
+
+<br><br>
+
+<b>Genel Beceri Seviyesi</b><br>
+<meter id="meter" min="1" max="3" value="1"></meter>
+
+<br>
+<button type="submit">Gönder</button>
+
+</form>
+
+<script>
+const inputs = document.querySelectorAll("#ad,#mail");
+const prog = document.getElementById("prog");
+
+function updateProgress(){
+    let filled=0;
+    inputs.forEach(i=>{
+        if(i.value.trim()!="") filled++;
+    });
+    prog.value = (filled/inputs.length)*100;
+}
+inputs.forEach(i=>i.addEventListener("input",updateProgress));
+
+const skills = document.querySelectorAll(".skill");
+const meter = document.getElementById("meter");
+
+function updateMeter(){
+    let sum=0;
+    skills.forEach(s=>sum += Number(s.value));
+    meter.value = sum / skills.length;
+}
+skills.forEach(s=>s.addEventListener("change",updateMeter));
+</script>
+
+</body>
+</html>

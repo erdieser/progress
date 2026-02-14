@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>meter + progress + fieldset Form Örneği</title>
+  <style>
+    body{font-family:system-ui,Segoe UI,Roboto,Arial; margin:20px; line-height:1.35}
+    form{max-width:700px}
+    fieldset{border:1px solid #ccc; border-radius:10px; padding:14px 16px; margin:14px 0}
+    legend{padding:0 8px; font-weight:700}
+    label{display:block; margin:10px 0 6px}
+    input, select, textarea{width:100%; padding:8px 10px; border:1px solid #ccc; border-radius:10px}
+    .row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    .box{border:1px dashed #bbb; border-radius:10px; padding:12px; margin-top:10px}
+    .mini{font-size:12px; color:#444}
+    button{padding:10px 12px; border:1px solid #ccc; border-radius:10px; cursor:pointer; background:#fff}
+    button:hover{background:#f3f3f3}
+  </style>
+</head>
+<body>
+
+<h2>Örnek Form (fieldset + progress + meter)</h2>
+
+<form id="demoForm" action="#" method="post">
+
+  <fieldset>
+    <legend>1) Kullanıcı Bilgileri</legend>
+
+    <div class="row">
+      <div>
+        <label for="ad">Ad Soyad</label>
+        <input id="ad" name="ad" type="text" placeholder="Örn: Erdi Eser" required>
+      </div>
+
+      <div>
+        <label for="mail">E-posta</label>
+        <input id="mail" name="mail" type="email" placeholder="ornek@mail.com" required>
+      </div>
+    </div>
+
+    <label for="sehir">Şehir</label>
+    <select id="sehir" name="sehir" required>
+      <option value="">Seçiniz</option>
+      <option>İstanbul</option>
+      <option>Ankara</option>
+      <option>İzmir</option>
+      <option>Bursa</option>
+    </select>
+
+    <div class="box">
+      <div><b>Form Doluluk Oranı (progress)</b></div>
+      <div class="mini">Gerekli alanları doldurdukça artar.</div>
+      <progress id="doluluk" value="0" max="100" style="width:100%; height:18px;"></progress>
+      <div id="dolulukText" class="mini">0%</div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>2) Performans / Skor</legend>
+
+    <label for="skor">Sınav Skoru (0–100)</label>
+    <input id="skor" name="skor" type="number" min="0" max="100" value="65" required>
+
+    <div class="box">
+      <div><b>Skor Durumu (meter)</b></div>
+      <div class="mini">
+        Örnek eşikler: düşük 0–49, orta 50–79, iyi 80–100
+      </div>
+
+      <!-- meter: değer bir aralık içinde, eşiklerle gösterilir -->
+      <meter id="skorMeter"
+             min="0" max="100"
+             low="50" high="80" optimum="90"
+             value="65"
+             style="width:100%; height:18px;">
+      </meter>
+
+      <div id="skorText" class="mini">Skor: 65</div>
+    </div>
+
+    <label>
+      <input id="onay" name="onay" type="checkbox" required style="width:auto; margin-right:6px">
+      Bilgilerim doğru (zorunlu)
+    </label>
+  </fieldset>
+
+  <button type="submit">Gönder</button>
+  <button type="reset" style="margin-left:8px">Sıfırla</button>
+
+</form>
+
+<script>
+  const form = document.getElementById("demoForm");
+
+  const requiredIds = ["ad","mail","sehir","skor","onay"];
+  const progressEl = document.getElementById("doluluk");
+  const progressText = document.getElementById("dolulukText");
+
+  const skorInput = document.getElementById("skor");
+  const skorMeter = document.getElementById("skorMeter");
+  const skorText = document.getElementById("skorText");
+
+  function calcProgress(){
+    let done = 0;
+
+    for (const id of requiredIds){
+      const el = document.getElementById(id);
+      if (!el) continue;
+
+      if (el.type === "checkbox") {
+        if (el.checked) done++;
+      } else if (el.tagName === "SELECT") {
+        if (el.value.trim() !== "") done++;
+      } else {
+        if (el.value.trim() !== "") done++;
+      }
+    }
+
+    const pct = Math.round((done / requiredIds.length) * 100);
+    progressEl.value = pct;
+    progressText.textContent = pct + "%";
+  }
+
+  function updateMeter(){
+    const v = Math.max(0, Math.min(100, Number(skorInput.value || 0)));
+    skorMeter.value = v;
+    skorText.textContent = "Skor: " + v;
+  }
+
+  form.addEventListener("input", () => { calcProgress(); updateMeter(); });
+  form.addEventListener("change", () => { calcProgress(); updateMeter(); });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    alert("Form doğrulandı! (Örnek: burada sunucuya gönderim yapılabilir.)");
+  });
+
+  form.addEventListener("reset", () => {
+    setTimeout(() => { calcProgress(); updateMeter(); }, 0);
+  });
+
+  // ilk yükleme
+  calcProgress();
+  updateMeter();
+</script>
+
+</body>
+</html>
